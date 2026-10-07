@@ -26,9 +26,11 @@ jobs:
           # We pull the code from Git instead of SCP
           if [ -d "/opt/projects/proxy/keren-globe/.git" ]; then
             cd /opt/projects/proxy/keren-globe
-            git pull origin main
+            git fetch origin work-branch
+            git checkout work-branch
+            git pull origin work-branch
           else
-            git clone https://github.com/${{ github.repository }}.git /opt/projects/proxy/keren-globe
+            git clone -b work-branch https://github.com/${{ github.repository }}.git /opt/projects/proxy/keren-globe
             cd /opt/projects/proxy/keren-globe
           fi
 
