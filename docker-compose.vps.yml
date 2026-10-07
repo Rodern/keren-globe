@@ -9,6 +9,10 @@ services:
       - backend-network
     ports:
       - "5000:5000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kggateway.rule=Host(`api-kglobe.157.173.112.19.nip.io`)"
+      - "traefik.http.services.kggateway.loadbalancer.server.port=5000"
 
   auth-service:
     build: ./auth-service
@@ -49,6 +53,10 @@ services:
       - proxy-network
     ports:
       - "18082:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kgfrontend.rule=Host(`kglobe.157.173.112.19.nip.io`)"
+      - "traefik.http.services.kgfrontend.loadbalancer.server.port=80"
 
 networks:
   proxy-network:
