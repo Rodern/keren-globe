@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import API from '../Services/Api';
-import NavBar from '../Components/NavBar';
 
 const Home = () => {
   const [destinations, setDestinations] = useState([]);
@@ -30,7 +29,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <NavBar />
       <div className="hero-section">
         <h1 className="hero-title">Explore The World</h1>
         <p className="hero-subtitle">Discover breathtaking destinations curated just for you.</p>
