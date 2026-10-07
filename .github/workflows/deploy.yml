@@ -35,7 +35,7 @@ jobs:
           # Generate .env file
           echo "FRONTEND_DOMAIN=kglobe.157.173.112.19.nip.io" > .env
           echo "API_DOMAIN=api-kglobe.157.173.112.19.nip.io" >> .env
-          echo "VITE_API_URL=http://api-kglobe.157.173.112.19.nip.io" >> .env
+          echo "VITE_API_URL=http://api-kglobe.157.173.112.19.nip.io:5000" >> .env
 
           # Build and deploy
           docker compose -f docker-compose.vps.yml down
