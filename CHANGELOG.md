@@ -33,5 +33,9 @@ All notable changes to this project will be documented in this file.
 
 ### Deployment Instructions (GitHub Actions)
 To use the automated CI/CD pipeline to deploy this project to a VPS, you must configure the following **Repository Secrets** in GitHub (Settings > Secrets and variables > Actions):
+<<<<<<< HEAD
 - `VPS_HOST`: The IP address or domain name of your target VPS (e.g., `XXX.XXX.XXX.XXX`).
+=======
+- `VPS_HOST`: The IP address or domain name of your target VPS (e.g., `157.173.112.19`).
+>>>>>>> 56b2fef2ec542f3e523f570ae5bd32d86238380f
 - `VPS_SSH_KEY`: A private SSH key that has deployment access to the VPS. Ensure the corresponding public key is in the `~/.ssh/authorized_keys` of the `deploy` user on the VPS.
