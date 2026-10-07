@@ -7,6 +7,11 @@ services:
     networks:
       - proxy-network
       - backend-network
+    environment:
+      - DESTINATION_API=http://kg_destination_service:5002
+      - RECOMMENDATION_API=http://kg_recommendation_service:5004
+      - ITINERARY_API=http://kg_itinerary_service:5003
+      - AUTH_API=http://kg_auth_service:5001
     ports:
       - "5000:5000"
     labels:
