@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API from '../Services/Api';
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -15,24 +16,10 @@ const Register = () => {
     setError("");
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
-      const response = await fetch(`${apiUrl}/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || "Registration failed");
-      }
-
-      // Automatically redirect to login
+      await API.post("/register", { username, email, password });
       navigate("/login");
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.message || err.message || "Registration failed");
     } finally {
       setLoading(false);
     }

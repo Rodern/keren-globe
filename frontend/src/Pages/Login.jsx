@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API from '../Services/Api';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,29 +15,16 @@ const Login = () => {
     setError("");
     
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
-      const response = await fetch(`${apiUrl}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await API.post("/login", { email, password });
+      const data = response.data;
 
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || "Login failed");
-      }
-
-      // Save token 
       if (data.token) {
         localStorage.setItem("token", data.token);
       }
       
-      // Redirect to home
       navigate("/");
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.message || err.message || "Login failed");
     } finally {
       setLoading(false);
     }
