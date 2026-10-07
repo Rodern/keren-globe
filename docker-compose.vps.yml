@@ -7,11 +7,8 @@ services:
     networks:
       - proxy-network
       - backend-network
-    labels:
-      - "traefik.enable=true"
-      # IMPORTANT: Replace api.yourdomain.com with your actual API domain
-      - "traefik.http.routers.kggateway.rule=Host(`api.yourdomain.com`)"
-      - "traefik.http.services.kggateway.loadbalancer.server.port=5000"
+    ports:
+      - "5000:5000"
 
   auth-service:
     build: ./auth-service
@@ -50,11 +47,8 @@ services:
     container_name: kg_frontend
     networks:
       - proxy-network
-    labels:
-      - "traefik.enable=true"
-      # IMPORTANT: Replace app.yourdomain.com with your actual frontend domain
-      - "traefik.http.routers.kgfrontend.rule=Host(`app.yourdomain.com`)"
-      - "traefik.http.services.kgfrontend.loadbalancer.server.port=80"
+    ports:
+      - "18082:80"
 
 networks:
   proxy-network:
